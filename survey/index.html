@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yaffa Market Survey | استبيان يافا ماركت</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#b51616;--ok:#0f9d58;--warn:#d93025;--ink:#1d1d1f;--muted:#6b7280;--card:#ffffff;--bg:#fafafa;--radius:16px;
+}
+*{box-sizing:border-box}
+body{font-family:"Cairo",system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0}
+.shell{max-width:760px;margin:0 auto;padding:16px}
+.hdr{padding:12px 14px;background:#fff;border-radius:var(--radius);box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.hdr h1{margin:0;font-size:22px;font-weight:800}
+.sub{margin:6px 0 0;color:var(--muted);font-size:15px;line-height:1.5}
+.card{margin-top:14px;background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.q{margin-top:14px}
+.q label{display:block;font-weight:800;margin-bottom:8px}
+.scale{display:flex;gap:10px;flex-wrap:wrap}
+.scale input{display:none}
+.pill{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #e5e7eb;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer;background:#fff;transition:transform .04s ease}
+.pill:active{transform:scale(.98)}
+.scale input:checked + .pill{border-color:var(--brand);outline:2px solid var(--brand)}
+textarea,input[type="tel"],select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;font-size:17px;background:#fff}
+button{width:100%;padding:14px 18px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-weight:900;font-size:18px;cursor:pointer}
+button[disabled]{opacity:.6;cursor:not-allowed}
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,.6);border-top-color:#fff;border-radius:50%;animation:spin .9s linear infinite;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.state{position:fixed;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;padding:24px;text-align:center;color:#fff;z-index:50}
+.state.show{display:flex}
+.ok{background:var(--ok)}
+.dup{background:var(--warn)}
+.state h2{margin:0 0 8px;font-size:32px;font-weight:900}
+.state p{margin:0;font-size:18px}
+.clock{font-variant-numeric:tabular-nums;margin-top:10px;font-size:18px;opacity:.95}
+.gift{width:150px;margin:14px 0}
+.note{color:var(--muted);font-size:14px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="hdr">
+    <h1>Yaffa Market Survey<br><span style="font-weight:600;font-size:18px">استبيان يافا ماركت</span></h1>
+    <div class="sub">
+      Thanks for taking our survey. To thank you for your feedback, we will give you a small gift from us as a thank you!<br>
+      شكراً على تعبأتك للاستبيان، لشكرك على نشرك هذا الاستبيان، سوف نقوم بتقديم هدية بسيطة لك.
+    </div>
+  </div>
+
+  <form id="survey" class="card" novalidate>
+    <!-- Q1 Staff -->
+    <div class="q">
+      <label>How do you rate our staff today? <br>كيف تقّيم أداء موظفينا اليوم؟</label>
+      <div class="scale" data-required="true" data-name="q1">
+        <label><input type="radio" name="q1" value="1"><span class="pill">1</span></label>
+        <label><input type="radio" name="q1" value="2"><span class="pill">2</span></label>
+        <label><input type="radio" name="q1" value="3"><span class="pill">3</span></label>
+        <label><input type="radio" name="q1" value="4"><span class="pill">4</span></label>
+        <label><input type="radio" name="q1" value="5"><span class="pill">5</span></label>
+      </div>
+    </div>
+
+    <!-- Q2 Cleanliness -->
+    <div class="q">
+      <label>How do you rate the store cleanliness today?<br>كيف تقيّم نظافة المحل اليوم؟</label>
+      <div class="scale" data-required="true" data-name="q2">
+        <label><input type="radio" name="q2" value="1"><span class="pill">1</span></label>
+        <label><input type="radio" name="q2" value="2"><span class="pill">2</span></label>
+        <label><input type="radio" name="q2" value="3"><span class="pill">3</span></label>
+        <label><input type="radio" name="q2" value="4"><span class="pill">4</span></label>
+        <label><input type="radio" name="q2" value="5"><span class="pill">5</span></label>
+      </div>
+    </div>
+
+    <!-- Q3 Overall -->
+    <div class="q">
+      <label>How do you rate your overall visit today?<br>كيف تقّم زيارتك اليوم بشكل عام؟</label>
+      <div class="scale" data-required="true" data-name="q3">
+        <label><input type="radio" name="q3" value="1"><span class="pill">1</span></label>
+        <label><input type="radio" name="q3" value="2"><span class="pill">2</span></label>
+        <label><input type="radio" name="q3" value="3"><span class="pill">3</span></label>
+        <label><input type="radio" name="q3" value="4"><span class="pill">4</span></label>
+        <label><input type="radio" name="q3" value="5"><span class="pill">5</span></label>
+      </div>
+    </div>
+
+    <!-- Q4 Comments -->
+    <div class="q">
+      <label>Any comments؟<br>أي تعليق؟</label>
+      <textarea id="comments" placeholder="Your comments / تعليقاتك"></textarea>
+    </div>
+
+    <!-- Q5 Phone -->
+    <div class="q">
+      <label>Your phone number<br>رقم هاتفك</label>
+      <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="(555) 123 4567" required>
+      <div class="note">One gift per phone number</div>
+    </div>
+
+    <button id="submitBtn" type="submit"><span id="spin" class="spinner" style="display:none"></span><span id="btnText">Submit</span></button>
+  </form>
+</div>
+
+<!-- Thank you screens -->
+<div id="stateOk" class="state ok">
+  <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="Gift" class="gift">
+  <h2>Thank you!</h2>
+  <p>Show this screen to our staff to receive your gift 🎁</p>
+  <div class="clock" id="okClock">loading...</div>
+</div>
+<div id="stateDup" class="state dup">
+  <h2>You've already submitted this survey</h2>
+</div>
+
+<script>
+const APP_URL = "https://script.google.com/macros/s/AKfycbz8zheyPHGSAN98itlCjPIlcHf4YFnENxiP_xjk79-sL9dwmSpDr4WP5cajp4hE0soVug/exec";
+
+const form = document.getElementById('survey');
+const btn = document.getElementById('submitBtn');
+const spin = document.getElementById('spin');
+const btnText = document.getElementById('btnText');
+const ok = document.getElementById('stateOk');
+const dup = document.getElementById('stateDup');
+const okClock = document.getElementById('okClock');
+const phoneEl = document.getElementById('phone');
+
+// radio buttons
+document.querySelectorAll('.scale label').forEach(lbl=>{
+  const input=lbl.querySelector('input');const pill=lbl.querySelector('.pill');
+  lbl.addEventListener('click',e=>{
+    e.preventDefault();input.checked=true;
+    const name=input.name;document.querySelectorAll(`input[name="${name}"]+.pill`).forEach(p=>p.style.outline='');
+    pill.style.outline='2px solid var(--brand)';
+  });
+});
+
+// phone formatting
+phoneEl.addEventListener('input',()=>{
+  const d=phoneEl.value.replace(/\D+/g,'').slice(0,10);
+  let o=d;if(d.length>6)o='('+d.slice(0,3)+') '+d.slice(3,6)+' '+d.slice(6);
+  else if(d.length>3)o='('+d.slice(0,3)+') '+d.slice(3);
+  phoneEl.value=o;
+});
+
+function validateRequired(){
+  const q1=document.querySelector('input[name="q1"]:checked');
+  const q2=document.querySelector('input[name="q2"]:checked');
+  const q3=document.querySelector('input[name="q3"]:checked');
+  const phoneOk=phoneEl.value.replace(/\D+/g,'').length>=7;
+  return q1&&q2&&q3&&phoneOk;
+}
+
+async function getClientIP(){
+  try{
+    const resp=await Promise.race([
+      fetch('https://api.ipify.org?format=json'),
+      new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),3000))
+    ]);
+    const data=await resp.json();
+    return data.ip||'';
+  }catch{return'';}
+}
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!validateRequired()){alert('Please answer all required questions.');return;}
+  setLoading(true);
+  const ip=await getClientIP();
+  const payload=new URLSearchParams({
+    q1:getVal('q1'),
+    q2:getVal('q2'),
+    q3:getVal('q3'),
+    q4:document.getElementById('comments').value.trim(),
+    phone:phoneEl.value.trim(),
+    ip:ip
+  });
+  try{
+    const r=await fetch(APP_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()});
+    const data=await r.json();
+    if(data.ok){form.reset();showOk();}
+    else if(data.reason==='duplicate'){showDup();}
+    else{alert('Something went wrong.');}
+  }catch(err){alert('Network error.');}finally{setLoading(false);}
+});
+
+function getVal(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:'';}
+function setLoading(v){btn.disabled=v;spin.style.display=v?'inline-block':'none';btnText.textContent=v?'Submitting':'Submit';}
+
+function showOk(){
+  ok.classList.add('show');
+  updateClock();
+  const id=setInterval(updateClock,1000);
+  ok.addEventListener('click',()=>{ok.classList.remove('show');clearInterval(id);},{once:true});
+}
+function showDup(){dup.classList.add('show');dup.addEventListener('click',()=>dup.classList.remove('show'),{once:true});}
+function updateClock(){
+  const now=new Date();
+  const date=(now.getMonth()+1)+'/'+now.getDate()+'/'+now.getFullYear();
+  let time=now.toLocaleTimeString('en-US',{hour12:true,hour:'numeric',minute:'2-digit',second:'2-digit'});
+  time=time.replace('AM','am').replace('PM','pm');
+  okClock.textContent=date+' '+time;
+}
+</script>
+</body>
+</html>
