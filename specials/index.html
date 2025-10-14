@@ -1,1 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yaffa Market Weekly Specials</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#b51616;
+      --ok:#0f9d58;
+      --warn:#d93025;
+      --ink:#1d1d1f;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#fafafa;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:"Cairo",system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink);margin:0;padding-bottom:84px}
+    .shell{max-width:760px;margin:0 auto;padding:16px}
+    .hdr{
+      padding:12px 14px;background:#fff;border-radius:var(--radius);
+      box-shadow:0 6px 18px rgba(0,0,0,.06);text-align:center
+    }
+    .hdr h1{margin:0;font-size:26px;font-weight:900;letter-spacing:.2px;line-height:1.25}
+    .hdr .ar{font-weight:900;font-size:26px}
+    .sub{margin:8px 0 0;color:var(--muted);font-size:15px}
+    .addr{margin-top:6px;font-size:15px;color:var(--ink);font-weight:800}
+
+    /* countdown label lines */
+    .end-labels{
+      margin-top:10px;font-size:15px;color:var(--ink);display:flex;flex-direction:column;gap:2px
+    }
+    .end-labels .muted{color:var(--muted)}
+
+    /* Countdown timer */
+    .timer-wrap{margin-top:8px;display:flex;justify-content:center}
+    .timer{
+      display:flex;gap:8px;align-items:stretch;justify-content:center;
+      font-weight:900;letter-spacing:.5px;user-select:none
+    }
+    .tchunk{
+      background:var(--card);border-radius:14px;min-width:84px;
+      padding:8px 10px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.06);
+      transform:translateY(8px);opacity:0;animation:fadeUp .6s ease forwards;
+    }
+    .tchunk:nth-child(1){animation-delay:.05s}
+    .tchunk:nth-child(2){animation-delay:.10s}
+    .tchunk:nth-child(3){animation-delay:.15s}
+    .tchunk:nth-child(4){animation-delay:.20s}
+    .num{
+      font-size:34px;line-height:1;border-radius:10px;display:block;
+      color:#fff;background:linear-gradient(180deg,var(--brand),#991212);
+      padding:10px 0;box-shadow:0 10px 24px rgba(181,22,22,.28);
+      animation:pulse 1.8s ease-in-out infinite;
+    }
+    .lbl{font-size:12px;color:var(--muted);margin-top:6px;font-weight:700;letter-spacing:.6px}
+
+    @keyframes pulse{
+      0%,100%{transform:translateZ(0) scale(1)}
+      50%{transform:translateZ(0) scale(1.04)}
+    }
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    .section{margin-top:16px}
+    .section h2{
+      margin:0 0 10px;font-size:22px;font-weight:900;color:var(--brand);letter-spacing:.3px;text-align:center
+    }
+
+    .card{
+      margin-top:12px;background:var(--card);border-radius:var(--radius);
+      padding:10px;box-shadow:0 6px 18px rgba(0,0,0,.06);
+      opacity:0;transform:translateY(8px);
+      animation:fadeUp .6s ease forwards;
+      animation-delay:var(--delay,0s)
+    }
+    .card img{width:100%;display:block;border-radius:12px}
+
+    /* Sticky call button */
+    .cta{
+      position:fixed;left:0;right:0;bottom:0;z-index:50;
+      padding:12px 16px env(safe-area-inset-bottom);
+      background:linear-gradient(180deg, rgba(250,250,250,0) 0, rgba(250,250,250,1) 18px);
+      display:flex;justify-content:center
+    }
+    .cta a{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:100%;max-width:760px;padding:14px 18px;border-radius:14px;
+      background:var(--brand);color:#fff;text-decoration:none;
+      font-weight:900;font-size:18px;box-shadow:0 8px 20px rgba(181,22,22,.28)
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shell">
+    <div class="hdr">
+      <h1 class="ar">عروض الأسبوع من يافا ماركت</h1>
+      <h1>Yaffa Market Weekly Specials</h1>
+      <div class="sub">Fresh deals all every week at Yaffa Market</div>
+      <div class="addr">21 Alexandersville Rd, Miamisburg</div>
+
+      <div class="end-labels">
+        <div>العروص تنتهي في</div>
+        <div class="muted">Delas end in</div>
+      </div>
+
+      <div class="timer-wrap">
+        <div class="timer" aria-live="polite">
+          <div class="tchunk"><span class="num" id="d">00</span><span class="lbl">DAYS</span></div>
+          <div class="tchunk"><span class="num" id="h">00</span><span class="lbl">HOURS</span></div>
+          <div class="tchunk"><span class="num" id="m">00</span><span class="lbl">MINUTES</span></div>
+          <div class="tchunk"><span class="num" id="s">00</span><span class="lbl">SECONDS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specials -->
+    <div class="section">
+      <h2>Weekly Specials</h2>
+
+      <div class="card" style="--delay:.05s">
+        <img src="https://goyaffagrill.com/wp-content/uploads/2025/10/1.png" alt="Special 1">
+      </div>
+
+      <div class="card" style="--delay:.12s">
+        <img src="https://goyaffagrill.com/wp-content/uploads/2025/10/2.png" alt="Special 2">
+      </div>
+
+      <div class="card" style="--delay:.19s">
+        <img src="https://goyaffagrill.com/wp-content/uploads/2025/10/3.png" alt="Special 3">
+      </div>
+
+      <div class="card" style="--delay:.26s">
+        <img src="https://goyaffagrill.com/wp-content/uploads/2025/10/4.png" alt="Special 4">
+      </div>
+
+      <div class="card" style="--delay:.33s">
+        <img src="https://goyaffagrill.com/wp-content/uploads/2025/10/5.png" alt="Special 5">
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a href="tel:+19378669999" aria-label="Call now 937 866 9999">Call Now (937) 866-9999</a>
+  </div>
+
+  <script>
+    // Find the upcoming Sunday at 12:00 AM (start of Sunday) local time
+    function getNextSundayMidnight() {
+      const now = new Date();
+      const target = new Date(now);
+      target.setHours(0, 0, 0, 0);        // midnight today
+      const day = now.getDay();           // 0 = Sunday
+      const daysUntilSunday = (7 - day) % 7;
+      target.setDate(target.getDate() + daysUntilSunday);
+      if (daysUntilSunday === 0 && now > target) {
+        // It's already Sunday after midnight → next week's Sunday
+        target.setDate(target.getDate() + 7);
+      }
+      return target;
+    }
+
+    const dEl = document.getElementById('d');
+    const hEl = document.getElementById('h');
+    const mEl = document.getElementById('m');
+    const sEl = document.getElementById('s');
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+
+    let end = getNextSundayMidnight();
+
+    function tick(){
+      const now = new Date();
+      let diff = end - now;
+
+      if (diff <= 0) {
+        // Reset to the following Sunday when we reach the end
+        end = getNextSundayMidnight();
+        diff = end - now;
+      }
+
+      const totalSeconds = Math.floor(diff/1000);
+      const days = Math.floor(totalSeconds / (3600*24));
+      const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+
+      dEl.textContent = pad(days);
+      hEl.textContent = pad(hours);
+      mEl.textContent = pad(mins);
+      sEl.textContent = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
