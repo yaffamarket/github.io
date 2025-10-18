@@ -163,55 +163,60 @@
     <a href="tel:+19378669999" aria-label="Call now 937 866 9999">Call Now (937) 866-9999</a>
   </div>
 
-  <script>
-    // Find the upcoming Sunday at 12:00 AM (start of Sunday) local time
-    function getNextSundayMidnight() {
-      const now = new Date();
-      const target = new Date(now);
-      target.setHours(0, 0, 0, 0);        // midnight today
-      const day = now.getDay();           // 0 = Sunday
-      const daysUntilSunday = (7 - day) % 7;
-      target.setDate(target.getDate() + daysUntilSunday);
-      if (daysUntilSunday === 0 && now > target) {
-        // It's already Sunday after midnight → next week's Sunday
-        target.setDate(target.getDate() + 7);
-      }
+ <script>
+  // Find the upcoming Sunday at 8:00 PM local time
+  function getNextSunday8PM() {
+    const now = new Date();
+    const target = new Date(now);
+    const day = now.getDay(); // 0 = Sunday
+    const daysUntilSunday = (7 - day) % 7; // days left until next Sunday
+
+    target.setHours(20, 0, 0, 0); // 8:00 PM
+
+    if (daysUntilSunday === 0 && now < target) {
+      // It's Sunday but before 8 PM → keep today
+      return target;
+    } else {
+      // Move to next Sunday 8 PM
+      target.setDate(target.getDate() + (daysUntilSunday === 0 ? 7 : daysUntilSunday));
       return target;
     }
+  }
 
-    const dEl = document.getElementById('d');
-    const hEl = document.getElementById('h');
-    const mEl = document.getElementById('m');
-    const sEl = document.getElementById('s');
+  const dEl = document.getElementById('d');
+  const hEl = document.getElementById('h');
+  const mEl = document.getElementById('m');
+  const sEl = document.getElementById('s');
 
-    function pad(n){ return String(n).padStart(2,'0'); }
+  function pad(n){ return String(n).padStart(2,'0'); }
 
-    let end = getNextSundayMidnight();
+  let end = getNextSunday8PM();
 
-    function tick(){
-      const now = new Date();
-      let diff = end - now;
+  function tick(){
+    const now = new Date();
+    let diff = end - now;
 
-      if (diff <= 0) {
-        // Reset to the following Sunday when we reach the end
-        end = getNextSundayMidnight();
-        diff = end - now;
-      }
-
-      const totalSeconds = Math.floor(diff/1000);
-      const days = Math.floor(totalSeconds / (3600*24));
-      const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
-      const mins = Math.floor((totalSeconds % 3600) / 60);
-      const secs = totalSeconds % 60;
-
-      dEl.textContent = pad(days);
-      hEl.textContent = pad(hours);
-      mEl.textContent = pad(mins);
-      sEl.textContent = pad(secs);
+    if (diff <= 0) {
+      // Reset to next Sunday 8 PM
+      end = getNextSunday8PM();
+      diff = end - now;
     }
 
-    tick();
-    setInterval(tick, 1000);
-  </script>
+    const totalSeconds = Math.floor(diff/1000);
+    const days = Math.floor(totalSeconds / (3600*24));
+    const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    dEl.textContent = pad(days);
+    hEl.textContent = pad(hours);
+    mEl.textContent = pad(mins);
+    sEl.textContent = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+
 </body>
 </html>
